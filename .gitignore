@@ -1,0 +1,95 @@
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Node / JS
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+.out/
+coverage/
+
+# =========================
+# Frontend specific
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+
+# =========================
+# Backend specific
+# =========================
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/.env.*
+backend/logs/
+
+# =========================
+# Database / ORM
+# =========================
+*.sqlite
+*.db
+prisma/dev.db
+
+# =========================
+# Kubernetes / Helm
+# =========================
+charts/**/charts/
+charts/**/tmp/
+charts/**/.helmignore
+
+# Helm lock & cache
+Chart.lock
+helmfile.lock
+
+# =========================
+# Docker
+# =========================
+*.tar
+*.log
+
+# =========================
+# Minikube / Kubernetes local state
+# =========================
+.minikube/
+.kube/cache/
+.kube/http-cache/
+
+# =========================
+# Temporary / Misc
+# =========================
+tmp/
+temp/
+*.tmp
+
+# =========================
+# Secrets (never commit)
+# =========================
+*.key
+*.pem
+*.crt
+secrets/
