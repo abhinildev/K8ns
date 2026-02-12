@@ -159,3 +159,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+mysql:
+  image: mysql:8.0
+  storage: 1Gi
+  database: wordpress
+  user: wpuser
+  password: wppassword
+  rootPassword: rootpassword
+
+wordpress:
+  image: wordpress:latest
+
+

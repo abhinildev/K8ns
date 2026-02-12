@@ -1,4 +1,6 @@
+import Dashboard from "./components/Dashboard"
 import Hero from "./components/Hero"
+
 import Navbar from "./components/Navbar"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 function App() {
@@ -10,9 +12,13 @@ function App() {
         <>
        <Navbar/>
         <Hero/>
+       
         </>
       }/>
+       <Route path="/dashboard" element={<Dashboard/>} />
+     
     </Routes>
+   
   </Router> 
   )
 }
