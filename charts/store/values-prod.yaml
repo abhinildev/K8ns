@@ -1,0 +1,125 @@
+# Namespace is passed dynamically by Helm install command
+namespace: default
+
+# ---------------------------
+# Global production settings
+# ---------------------------
+
+environment: production
+
+domain: example.yourdomain.com   # will be overridden per store by backend
+
+ingress:
+  className: nginx
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "64m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+
+# ---------------------------
+# MySQL configuration
+# ---------------------------
+
+mysql:
+  image: mysql:8.0
+
+  database: wordpress
+
+  user: wpuser
+
+  password: CHANGE_ME_SECURE_PASSWORD
+
+  rootPassword: CHANGE_ME_ROOT_PASSWORD
+
+  storage: 10Gi
+
+  storageClass: local-path   # default for k3s
+
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1Gi"
+
+# ---------------------------
+# WordPress configuration
+# ---------------------------
+
+wordpress:
+  image: wordpress:6.7-apache
+
+  replicas: 1
+
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1Gi"
+
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: local-path
+
+# ---------------------------
+# Service configuration
+# ---------------------------
+
+service:
+  type: ClusterIP
+  port: 80
+
+# ---------------------------
+# Security settings
+# ---------------------------
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+# ---------------------------
+# Resource isolation (per store)
+# ---------------------------
+
+quota:
+  enabled: true
+  requestsCpu: "1000m"
+  requestsMemory: "1Gi"
+  limitsCpu: "2000m"
+  limitsMemory: "2Gi"
+  pvcs: "5"
+
+limitRange:
+  enabled: true
+  defaultCpu: "500m"
+  defaultMemory: "512Mi"
+  requestCpu: "250m"
+  requestMemory: "256Mi"
+
+# ---------------------------
+# Readiness and health probes
+# ---------------------------
+
+probes:
+  readiness:
+    initialDelaySeconds: 10
+    periodSeconds: 5
+
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+
+# ---------------------------
+# Production storage class
+# ---------------------------
+
+storage:
+  className: local-path
