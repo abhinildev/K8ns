@@ -69,10 +69,10 @@ export const deleteStore= async(req:Request,res:Response)=>{
         );
         res.status(202).json({
             message:"Store deleted"
-        })
+        });
         setImmediate(()=>{
             deleteStoreWorker(id);
-        })
+        });
     } catch (error) {
         res.status(500).json({ error: "Failed to delete store" });
     }

@@ -81,7 +81,7 @@ Backend updates store status → Dashboard reflects state
 
 ```
 project-root/
-│
+├──architecture/storecreation storedeletion
 ├── backend/
 │   ├── src/
 │   │   ├── controller/
@@ -412,7 +412,7 @@ Handled via Helm values:
 Local:
 
 ```
-values-local.yaml
+values.yaml
 ```
 
 Production:

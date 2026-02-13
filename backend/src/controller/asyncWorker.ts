@@ -60,7 +60,6 @@ export async function provisionStore(storeId: string) {
 
     await execAsync(helmCmd);
 
-   
     await Store.update(
       {
         status: "READY",
