@@ -1,6 +1,6 @@
 # Kubernetes Store Provisioning Platform
 
-**Urumi AI SDE Internship — Round 1 System Design Assignment**
+
 
 ---
 
